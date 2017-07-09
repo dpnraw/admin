@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Users list</h2>           
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Avatar</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="users">
+      <tr *ngFor="let user of users"
+      (click)="selectUser(user)"
+      [class.active]="user === activeUser">
+      
+        <td>{{ user.id}}</td>
+        <td>{{ user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.avatar}}</td>
+        
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="col-sm-8 well" *ngIf="activeUser">
+		<h2>{{activeUser.first_name}}</h2><small>{{activeUser.last_name}}</small><p>{{activeUser.avatar}}</p>
+
+	 <input class="form-control" [(ngModel)]="activeUser.first_name">
+    <input class="form-control" [(ngModel)]="activeUser.last_name">
+    <input class="form-control" [(ngModel)]="activeUser.avatar">
+    <td id="buttonrow">
+            <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-trash"></span> Trash 
+        </button>
+         <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-erase"
+          (click)="onUpdate()"></span> Edit
+        </button>
+        </td>
+</div>
+      
+	</div>
